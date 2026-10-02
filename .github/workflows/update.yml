@@ -16,19 +16,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download Samsung TV Plus Spain playlist
+      - name: Download Samsung TV Plus Spain
         run: |
           curl -fL --retry 3 \
-            "https://jmp2.uk/sam-ES.m3u" \
-            -o samsung_tv_plus_es.m3u
+            "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/samsungtvplus_es.m3u" \
+            -o samsungtvplus_es.m3u
 
-          test -s samsung_tv_plus_es.m3u
-          grep -q "#EXTM3U" samsung_tv_plus_es.m3u
+          test -s samsungtvplus_es.m3u
+          grep -q "#EXTM3U" samsungtvplus_es.m3u
 
       - name: Commit updated playlist
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add samsung_tv_plus_es.m3u
+          git add samsungtvplus_es.m3u
           git diff --cached --quiet || git commit -m "Update Samsung TV Plus ES"
           git push
